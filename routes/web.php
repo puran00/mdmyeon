@@ -15,10 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//страницы
 Route::get('/', function () {
     return view('welcome');
     })->name('welcome');
+
+
+Route::post('/registration/save',[UserController::class,'RegSave'])->name('RegSave');
 
 Route::get('/registration',[PageController::class,'RegPage'])->name('RegPage');
 Route::post('/registration', [UserController::class,'register'])->name('register');
@@ -28,10 +30,16 @@ Route::post('/auth', [UserController::class,'authorization'])->name('authorizati
 
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
-Route::get('/admin', [PageController::class,'admin'])->name('admin');
 
-Route::get('/new_category',[PageController::class, 'newCategory'])->name('newCategory');
-Route::post('/new_category',[\App\Http\Controllers\CategoryController::class, 'addCategory'])->name('addCategory');
+Route::group(['middleware'=>['auth','admin'],'prefix'=>'admin'], function (){
+    Route::get('/admin', [PageController::class,'admin'])->name('admin');
 
-//функции
-Route::post('/registration/save',[UserController::class,'RegSave'])->name('RegSave');
+    Route::get('/new_category',[PageController::class, 'newCategory'])->name('newCategory');
+    Route::post('/new_category',[\App\Http\Controllers\CategoryController::class, 'addCategory'])->name('addCategory');
+
+
+    Route::get('category/edit/{category}',[\App\Http\Controllers\CategoryController::class,'edit'])->name('CategoryEditPage');
+    Route::put('category/edit/save/{category}',[\App\Http\Controllers\CategoryController::class, 'update'])->name('CategoryEditSave');
+});
+
+

@@ -15,4 +15,15 @@ class CategoryController extends Controller
 
         return redirect()->route('admin');
     }
+
+    public function edit(Category $category){
+        return view('category.editCategory', ['category'=>$category]);
+
+    }
+
+    public function update(Request $request, Category $category){
+        $category->title=$request->category;
+        $category->update();
+        return redirect()->route('admin');
+    }
 }

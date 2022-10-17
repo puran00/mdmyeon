@@ -18,8 +18,7 @@ PageController extends Controller
 
     public function admin(){
         $categories = Category::all();
-
-        return view('admin');
+        return view('admin',['categories'=>$categories]);
     }
 
     public function newCategory(){
