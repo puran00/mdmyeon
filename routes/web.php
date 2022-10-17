@@ -30,5 +30,8 @@ Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
 Route::get('/admin', [PageController::class,'admin'])->name('admin');
 
+Route::get('/new_category',[PageController::class, 'newCategory'])->name('newCategory');
+Route::post('/new_category',[\App\Http\Controllers\CategoryController::class, 'addCategory'])->name('addCategory');
+
 //функции
 Route::post('/registration/save',[UserController::class,'RegSave'])->name('RegSave');
