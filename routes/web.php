@@ -30,6 +30,9 @@ Route::post('/auth', [UserController::class,'authorization'])->name('authorizati
 
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
+Route::get('/add_content',[PageController::class, 'content'])->name('content');
+Route::post('/create_content',[\App\Http\Controllers\ContentController::class, 'create'])->name('create');
+
 
 Route::group(['middleware'=>['auth','admin'],'prefix'=>'admin'], function (){
     Route::get('/admin', [PageController::class,'admin'])->name('admin');
@@ -40,6 +43,7 @@ Route::group(['middleware'=>['auth','admin'],'prefix'=>'admin'], function (){
 
     Route::get('category/edit/{category}',[\App\Http\Controllers\CategoryController::class,'edit'])->name('CategoryEditPage');
     Route::put('category/edit/save/{category}',[\App\Http\Controllers\CategoryController::class, 'update'])->name('CategoryEditSave');
+
 });
 
 

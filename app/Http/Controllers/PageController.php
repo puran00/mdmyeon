@@ -25,4 +25,10 @@ PageController extends Controller
         return view('category.newCategory');
     }
 
+    public function content(){
+        $categories = Category::all();
+        return view('content.addContent
+        ',['categories'=>$categories]);
+    }
+
 }

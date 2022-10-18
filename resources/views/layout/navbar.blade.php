@@ -39,8 +39,12 @@
 
                     @endif
                 <li class="nav-item">
+                    <a class="nav-link" href="{{route('content')}}" style="color:#212F3D">Добавить пост</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{route('logout')}}">Выход</a>
                 </li>
+
                 @endauth
             </ul>
             <form class="d-flex" role="search">
