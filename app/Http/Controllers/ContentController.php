@@ -26,5 +26,9 @@ class ContentController extends Controller
         return redirect()->route('admin');
     }
 
+    public function edit(Content $content){
+        return view('content.editContent', ['content'=>$content]);
+    }
+
 
 }

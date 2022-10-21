@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Content;
 use Illuminate\Http\Request;
 
 class
@@ -18,7 +19,9 @@ PageController extends Controller
 
     public function admin(){
         $categories = Category::all();
-        return view('admin',['categories'=>$categories]);
+        $contents = Content::all();
+
+        return view('admin',['categories'=>$categories],['contents'=>$contents]);
     }
 
     public function newCategory(){

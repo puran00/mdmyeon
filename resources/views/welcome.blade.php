@@ -37,5 +37,6 @@
                 <p>это текс</p>
             </div>
         </div>
+
     </div>
 @endsection
